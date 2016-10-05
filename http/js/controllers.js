@@ -5,7 +5,47 @@
 var mainControllers = angular.module('mainControllers', []);
 mainControllers.controller('mainCtrl', ['$scope','Rates',
         function($scope, Rates) {
-// CHART
+            var socket = io("http://slapps.fr:8088");
+            $scope.cpuSeries = ['CPU'];
+            $scope.cpuLabels = ["","","","","","","","","","","","","","",""]
+            $scope.cpuData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+            $scope.cpuDatasetOverride = [{ fill : false }];
+            $scope.cpuOptions ={
+                scales: {
+                    yAxes: [
+                    {
+                        ticks: {
+                            max: 2,
+                            min: 0,
+                            stepSize: 0.1
+                        }
+                    }
+                    ]
+                }
+            };
+            socket.on("loadavg",function(data){
+                console.log(data);
+                data.forEach(function(value){
+                    $scope.cpuData[0].shift();
+                    $scope.cpuData[0].push(value);
+                    $scope.cpuLabels.shift();
+                    $scope.cpuLabels.push("");
+
+                });
+                //console.log($scope.cpuData[0])
+            });
+            socket.on("loadavgi",function(data){
+                //console.log(data);
+                $scope.cpuData[0].shift();
+                $scope.cpuData[0].push(data);
+                $scope.cpuLabels.shift();
+                $scope.cpuLabels.push("");
+                $scope.$apply();
+                //console.log($scope.cpuData[0]);
+            });
+
+
+            // CHART
             //$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
             $scope.series = ['25 ans','20 ans','15 ans'];
             $scope.labels = []
@@ -14,17 +54,17 @@ mainControllers.controller('mainCtrl', ['$scope','Rates',
             Rates.getRates().success(function(response){
                 response.forEach(function(rate){
                     if(rate.years==25){
-                        console.log(rate);
+                        //console.log(rate);
                         $scope.labels.push(rate.date);
                         $scope.data[0].push(rate.rate);
                     }
                     if(rate.years==20){
-                        console.log(rate);
+                        //console.log(rate);
                         $scope.data[1].push(rate.rate);
                     }
 
                     if(rate.years==15){
-                        console.log(rate);
+                        //console.log(rate);
                         $scope.data[2].push(rate.rate);
                     }
 

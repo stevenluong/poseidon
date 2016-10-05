@@ -1,6 +1,22 @@
-<canvas id="line" class="chart chart-line" chart-data="data"
-    chart-labels="labels" chart-series="series" chart-options="options"
-    chart-dataset-override="datasetOverride" chart-click="onClick"
-</canvas> 
+<h1>Real time monitoring</h1>
+WORK IN PROGRESS
+<div class="row">
+    <div class="col-md-6">
+        <h2>CPU</h2>
+        <canvas id="cpu" class="chart chart-line" chart-data="cpuData"
+                                                   chart-labels="cpuLabels" chart-series="cpuSeries" chart-options="cpuOptions"
+                                                                                               chart-dataset-override="cpuDatasetOverride" chart-click="onClick">
+        </canvas> 
+    </div>
+    <div class="col-md-6">
+        <h2>RAM</h2>
+        <!--
+        <canvas id="ram" class="chart chart-line" chart-data="data"
+                                                   chart-labels="labels" chart-series="series" chart-options="options"
+                                                                                               chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas> 
+        -->
+    </div>
+</div>
 
 
