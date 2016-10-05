@@ -7,7 +7,8 @@ var mainApp = angular.module('mainApp', [
   //'mainAnimations',
   'mainControllers',
   'mainFilters',
-  'mainServices'
+  'mainServices',
+  'chart.js'
 ]);
 
 mainApp.config(['$routeProvider',
