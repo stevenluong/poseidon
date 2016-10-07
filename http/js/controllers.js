@@ -9,13 +9,13 @@ mainControllers.controller('mainCtrl', ['$scope',
             $scope.cpuSeries = ['CPU'];
             $scope.cpuLabels = ["","","","","","","","","","","","","","",""];
             $scope.cpuData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
-            $scope.cpuDatasetOverride = [{ fill : false }];
+            $scope.cpuDatasetOverride = [{ fill : true }];
             $scope.cpuOptions ={
                 scales: {
                     yAxes: [
                     {
                         ticks: {
-                            max: 150,
+                            max: 200,
                             min: 0,
                             stepSize: 10
                         }
@@ -23,25 +23,6 @@ mainControllers.controller('mainCtrl', ['$scope',
                     ]
                 }
             };
-            $scope.ramSeries = ['RAM'];
-            $scope.ramLabels = ["","","","","","","","","","","","","","",""];
-            $scope.ramData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
-            $scope.ramDatasetOverride = [{ fill : false }];
-            $scope.ramOptions ={
-                scales: {
-                    yAxes: [
-                    {
-                        ticks: {
-                            max: 150,
-                            min: 0,
-                            stepSize: 10
-                        }
-                    }
-                    ]
-                }
-            };
-
-
             socket.on("loadavg",function(data){
                 console.log(data);
                 data.forEach(function(value){
@@ -62,6 +43,24 @@ mainControllers.controller('mainCtrl', ['$scope',
                 $scope.$apply();
                 //console.log($scope.cpuData[0]);
             });
+            $scope.ramSeries = ['RAM'];
+            $scope.ramLabels = ["","","","","","","","","","","","","","",""];
+            $scope.ramData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+            $scope.ramDatasetOverride = [{ fill : true}];
+            $scope.ramOptions ={
+                scales: {
+                    yAxes: [
+                    {
+                        ticks: {
+                            max: 100,
+                            min: 0,
+                            stepSize: 10
+                        }
+                    }
+                    ]
+                }
+            };
+
             socket.on("memi",function(data){
                 $scope.ramData[0].shift();
                 $scope.ramData[0].push(data);
@@ -75,28 +74,28 @@ mainControllers.controller('mainCtrl', ['$scope',
             // CHART
             //$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
             /*
-            $scope.series = ['25 ans','20 ans','15 ans'];
-            $scope.labels = []
-            $scope.data = [[],[],[]]
-            $scope.datasetOverride = [{ fill : false },{ fill : false },{ fill : false }];
-            Rates.getRates().success(function(response){
-                response.forEach(function(rate){
-                    if(rate.years==25){
-                        //console.log(rate);
-                        $scope.labels.push(rate.date);
-                        $scope.data[0].push(rate.rate);
-                    }
-                    if(rate.years==20){
-                        //console.log(rate);
-                        $scope.data[1].push(rate.rate);
-                    }
+               $scope.series = ['25 ans','20 ans','15 ans'];
+               $scope.labels = []
+               $scope.data = [[],[],[]]
+               $scope.datasetOverride = [{ fill : false },{ fill : false },{ fill : false }];
+               Rates.getRates().success(function(response){
+               response.forEach(function(rate){
+               if(rate.years==25){
+            //console.log(rate);
+            $scope.labels.push(rate.date);
+            $scope.data[0].push(rate.rate);
+            }
+            if(rate.years==20){
+            //console.log(rate);
+            $scope.data[1].push(rate.rate);
+            }
 
-                    if(rate.years==15){
-                        //console.log(rate);
-                        $scope.data[2].push(rate.rate);
-                    }
+            if(rate.years==15){
+            //console.log(rate);
+            $scope.data[2].push(rate.rate);
+            }
 
-                })
+            })
             });
             */
             $scope.onClick = function (points, evt) {
