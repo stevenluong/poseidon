@@ -7,10 +7,17 @@ server.listen(8088);
 
 
 io.on('connection', function (socket) {
-    socket.emit("loadavg",os.loadavg());
-    console.log(os.cpus());
-    console.log(os.loadavg());
+    var loadavg = os.loadavg();
+    var loadavgi = 0;
+    var mem = 0;
+    socket.emit("loadavg",loadavg);
     setInterval(function(){ 
-        socket.emit("loadavgi",os.loadavg()[0]);
+        loadavgi = os.loadavg()[0]
+        socket.emit("loadavgi",loadavgi);
+        memi = Math.round(os.freemem()/os.totalmem()*100)
+        socket.emit("memi",memi);
+        console.log(memi)
     }, 1000);
+
 });
+

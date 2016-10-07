@@ -3,11 +3,11 @@
 /* Controllers */
 
 var mainControllers = angular.module('mainControllers', []);
-mainControllers.controller('mainCtrl', ['$scope','Rates',
-        function($scope, Rates) {
+mainControllers.controller('mainCtrl', ['$scope',
+        function($scope) {
             var socket = io("http://slapps.fr:8088");
             $scope.cpuSeries = ['CPU'];
-            $scope.cpuLabels = ["","","","","","","","","","","","","","",""]
+            $scope.cpuLabels = ["","","","","","","","","","","","","","",""];
             $scope.cpuData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
             $scope.cpuDatasetOverride = [{ fill : false }];
             $scope.cpuOptions ={
@@ -15,19 +15,38 @@ mainControllers.controller('mainCtrl', ['$scope','Rates',
                     yAxes: [
                     {
                         ticks: {
-                            max: 2,
+                            max: 150,
                             min: 0,
-                            stepSize: 0.1
+                            stepSize: 10
                         }
                     }
                     ]
                 }
             };
+            $scope.ramSeries = ['RAM'];
+            $scope.ramLabels = ["","","","","","","","","","","","","","",""];
+            $scope.ramData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+            $scope.ramDatasetOverride = [{ fill : false }];
+            $scope.ramOptions ={
+                scales: {
+                    yAxes: [
+                    {
+                        ticks: {
+                            max: 150,
+                            min: 0,
+                            stepSize: 10
+                        }
+                    }
+                    ]
+                }
+            };
+
+
             socket.on("loadavg",function(data){
                 console.log(data);
                 data.forEach(function(value){
                     $scope.cpuData[0].shift();
-                    $scope.cpuData[0].push(value);
+                    $scope.cpuData[0].push(value*50);
                     $scope.cpuLabels.shift();
                     $scope.cpuLabels.push("");
 
@@ -37,9 +56,17 @@ mainControllers.controller('mainCtrl', ['$scope','Rates',
             socket.on("loadavgi",function(data){
                 //console.log(data);
                 $scope.cpuData[0].shift();
-                $scope.cpuData[0].push(data);
+                $scope.cpuData[0].push(data*50);
                 $scope.cpuLabels.shift();
                 $scope.cpuLabels.push("");
+                $scope.$apply();
+                //console.log($scope.cpuData[0]);
+            });
+            socket.on("memi",function(data){
+                $scope.ramData[0].shift();
+                $scope.ramData[0].push(data);
+                $scope.ramLabels.shift();
+                $scope.ramLabels.push("");
                 $scope.$apply();
                 //console.log($scope.cpuData[0]);
             });
@@ -47,6 +74,7 @@ mainControllers.controller('mainCtrl', ['$scope','Rates',
 
             // CHART
             //$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+            /*
             $scope.series = ['25 ans','20 ans','15 ans'];
             $scope.labels = []
             $scope.data = [[],[],[]]
@@ -70,6 +98,7 @@ mainControllers.controller('mainCtrl', ['$scope','Rates',
 
                 })
             });
+            */
             $scope.onClick = function (points, evt) {
                 console.log(points, evt);
             };
