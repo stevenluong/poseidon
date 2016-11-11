@@ -1,4 +1,5 @@
-fs = require('fs')
+var fs = require('fs')
+var COMMON = require("./common.js");
 var logFile ='/var/log/apache2/access.log'; 
 var lineReader = require('readline').createInterface({
     input: fs.createReadStream(logFile)
@@ -15,6 +16,7 @@ lineReader.on('close',function(){
     for(var ip in visits){
         //console.log(ip);
         visits[ip].forEach(function(visit){
+            
             if(filter(visit)){
                 //console.log("-"+visit.target+"  "+visit.source);
             }
@@ -59,7 +61,11 @@ lineReader.on('line', function (line) {
             raw:line
         };
         visits[ip].push(visit);
-        //TODO push to ROR
+        //Push to ROR
+        COMMON.ror_post(data,"slapps.fr","/poseidon/ror/visits.json");
+        var data ={
+                visit
+            };
         if(target.indexOf("/hephaistos/http/ ")!=-1){
             //console.log(visit);
             count = count +1;
