@@ -1,0 +1,41 @@
+<%= form_for(@visit) do |f| %>
+  <% if @visit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
+
+      <ul>
+      <% @visit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ip %><br>
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :firstDate %><br>
+    <%= f.datetime_select :firstDate %>
+  </div>
+  <div class="field">
+    <%= f.label :target %><br>
+    <%= f.text_field :target %>
+  </div>
+  <div class="field">
+    <%= f.label :source %><br>
+    <%= f.text_field :source %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :raw %><br>
+    <%= f.text_field :raw %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

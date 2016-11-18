@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip: MyString
+  firstDate: 2016-11-05 19:37:53
+  target: MyString
+  source: MyString
+  description: MyString
+  raw: MyString
+
+two:
+  ip: MyString
+  firstDate: 2016-11-05 19:37:53
+  target: MyString
+  source: MyString
+  description: MyString
+  raw: MyString

@@ -4,6 +4,13 @@
     "license": "",
     "repository": "https://github.com/stevenluong/poseidon",
     "dependencies": {
+        "angular": "*",
+        "angular-mocks": "*",
+        "jquery": "*",
+        "bootstrap": "*",
+        "angular-route": "*",
+        "angular-resource": "*",
+        "angular-animate": "*",
         "angular-chart.js": "*",
         "http-server": "*",
         "bower": "*",
