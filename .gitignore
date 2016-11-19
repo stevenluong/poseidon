@@ -6,5 +6,6 @@ ror/vendor/bundle/
 ror/vendor/cache/
 *.swp
 *.swo
+*.log
 
 

@@ -17,9 +17,15 @@ services:
             - ror
             - redis
         volumes:
-            - ./node/server.js:/node/server.js
-            - ./node/common.js:/node/common.js
-            - ./node/logScan.js:/node/logScan.js
+            #- ./node/server.js:/node/server.js
+            #- ./node/common.js:/node/common.js
+            #- ./node/logScan.js:/node/logScan.js
+            - ./node/:/node
+            - ./node/node_modules:/node/node_modules
+            - /var/log/apache2:/node/apacheLogs
+            - ../nginx/logs:/node/nginxLogs
+        ports:
+            - "8090:8088"
         restart: always
     http:
         build: http/.
@@ -29,18 +35,13 @@ services:
         ports:
             - "8002:80"
         volumes:
-            - ./http/js:/http/js
-            - ./http/css:/http/css
-            - ./http/partials:/http/partials
-            - ./http/favicon.ico:/http/favicon.ico
-            - ./http/index.html:/http/index.html
+            - ./http/:/http
+            - ./http/node_modules:/http/node_modules
         restart: always
         networks:
             - nginx_default
     redis:
         image: redis
-        ports:
-            - "16379:6379"
         restart: always
 networks:
     nginx_default:

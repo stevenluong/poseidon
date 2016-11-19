@@ -8,12 +8,11 @@ module.exports = {
 			}};
 		ror_post(data,"slapps.fr","/APP/ror/OBJECTS.json");
 	},
-	ror_post: function(data,host,path){
-                console.log(data);
+	ror_post: function(data,host,port,path,callback){
 		var dataStr = JSON.stringify(data);
 		var options = {
 			host: host,
-			port: 80,
+			port: port,
 			path: path,
 			method: 'POST',
 			headers: {
@@ -30,6 +29,7 @@ module.exports = {
 			});
 
 			res.on('end', function() {
+                                callback(res);
 				//console.log(str);
 			})
 

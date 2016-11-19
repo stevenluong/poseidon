@@ -20,11 +20,10 @@
         "request": "*",
         "socket.io": "*",
         "socket.io-client": "*",
-        "forever": "*",
+        "kue": "*",
         "querystring": "*"
     },
     "scripts": {
-        "postinstall": "bower install",
         "start": "forever start server.js"
     }
 }

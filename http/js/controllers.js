@@ -3,9 +3,16 @@
 /* Controllers */
 
 var mainControllers = angular.module('mainControllers', []);
+mainControllers.controller('logsCtrl', ['$scope','$http','Visit',
+        function($scope,$http,Visit) {
+            Visit.query(function(visits){
+                $scope.visits = visits;
+                console.log(visits.length);
+            });
+        }]);
 mainControllers.controller('mainCtrl', ['$scope',
         function($scope) {
-            var socket = io("http://slapps.fr:8088");
+            var socket = io("http://slapps.fr:8090");
             $scope.cpuSeries = ['CPU'];
             $scope.cpuLabels = ["","","","","","","","","","","","","","",""];
             $scope.cpuData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
