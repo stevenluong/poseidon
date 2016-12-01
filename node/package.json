@@ -21,6 +21,7 @@
         "socket.io": "*",
         "socket.io-client": "*",
         "kue": "*",
+        "cron": "*",
         "querystring": "*"
     },
     "scripts": {
