@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ip:</strong>
+  <%= @visit.ip %>
+</p>
+
+<p>
+  <strong>Firstdate:</strong>
+  <%= @visit.firstDate %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @visit.target %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @visit.source %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @visit.description %>
+</p>
+
+<p>
+  <strong>Raw:</strong>
+  <%= @visit.raw %>
+</p>
+
+<%= link_to 'Edit', edit_visit_path(@visit) %> |
+<%= link_to 'Back', visits_path %>

@@ -1,3 +1,5 @@
+//TODO Cue
+//TODO filter ror
 var fs = require('fs')
 var COMMON = require("./common.js");
 var logFile ='/var/log/apache2/access.log'; 
@@ -14,14 +16,14 @@ lineReader.on('close',function(){
     console.log("nb distinct visit on hephaistos: "+count2);
     console.log("nb total visit on server "+Object.keys(visits).length);
     for(var ip in visits){
-        //console.log(ip);
+        console.log(ip);
         visits[ip].forEach(function(visit){
             
             if(filter(visit)){
-                //console.log("-"+visit.target+"  "+visit.source);
+                console.log("-"+visit.target+"  "+visit.source);
             }
         });
-        //console.log("-------");
+        console.log("-------");
     };
 });
 var filter = function(visit){
@@ -62,10 +64,10 @@ lineReader.on('line', function (line) {
         };
         visits[ip].push(visit);
         //Push to ROR
-        COMMON.ror_post(data,"slapps.fr","/poseidon/ror/visits.json");
         var data ={
                 visit
             };
+        //COMMON.ror_post(data,"slapps.fr","/poseidon/ror/visits.json");
         if(target.indexOf("/hephaistos/http/ ")!=-1){
             //console.log(visit);
             count = count +1;
