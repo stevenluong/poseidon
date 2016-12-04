@@ -4,6 +4,13 @@
     "license": "",
     "repository": "https://github.com/stevenluong/poseidon",
     "dependencies": {
+        "angular": "*",
+        "angular-mocks": "*",
+        "jquery": "*",
+        "bootstrap": "*",
+        "angular-route": "*",
+        "angular-resource": "*",
+        "angular-animate": "*",
         "angular-chart.js": "*",
         "http-server": "*",
         "bower": "*",
@@ -13,11 +20,11 @@
         "request": "*",
         "socket.io": "*",
         "socket.io-client": "*",
-        "forever": "*",
+        "kue": "*",
+        "cron": "*",
         "querystring": "*"
     },
     "scripts": {
-        "postinstall": "bower install",
         "start": "forever start server.js"
     }
 }

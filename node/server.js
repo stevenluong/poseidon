@@ -16,7 +16,7 @@ io.on('connection', function (socket) {
         socket.emit("loadavgi",loadavgi);
         memi = Math.round(os.freemem()/os.totalmem()*100)
         socket.emit("memi",memi);
-        console.log(memi)
+        //console.log(memi)
     }, 1000);
 
 });
