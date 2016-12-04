@@ -21,7 +21,7 @@ services:
             #- ./node/common.js:/node/common.js
             #- ./node/logScan.js:/node/logScan.js
             - ./node/:/node
-            - ./node/node_modules:/node/node_modules
+            - /node/node_modules
             - /var/log/apache2:/node/apacheLogs
             - ../nginx/logs:/node/nginxLogs
         ports:
@@ -36,7 +36,7 @@ services:
             - "8002:80"
         volumes:
             - ./http/:/http
-            - ./http/node_modules:/http/node_modules
+            - /http/node_modules
         restart: always
         networks:
             - nginx_default
