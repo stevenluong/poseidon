@@ -3,3 +3,5 @@ RUN mkdir /node
 WORKDIR /node
 ADD package.json /node/package.json
 RUN npm install
+WORKDIR /node
+ADD . /node

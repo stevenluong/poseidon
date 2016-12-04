@@ -1,3 +1,5 @@
+//TODO Cue
+//TODO filter ror
 //DEPENDENCIES
 var fs = require('fs')
 var COMMON = require("./common.js");
@@ -37,16 +39,26 @@ var filteredVisits = [];
 var visitsByIp = {};
 var now = new Date();
 var isFirst = true;
+var CronJob = require('cron').CronJob;
 var lineReader = require('readline').createInterface({
-    input: fs.createReadStream(logFile)
+        input: fs.createReadStream("/node/apacheLogs/empty.txt")
+    });
+var cronJob = new CronJob({
+    //every hour
+    cronTime: '0 0 1 * * *', 
+    onTick: function() {
+        console.log('cron is triggered')
+        lineReader = require('readline').createInterface({
+            input: fs.createReadStream(logFile)
+        });
+    },
+    start: true
 });
+cronJob.start();
 
 //BUSINESS
 queue.process('visit', function(job, done){
-    console.log(job.data);
     COMMON.ror_post(job.data,server_url,server_port,visits_path,function(res){
-        console.log(job.data);
-        console.log("-- OK --");
         done();
     })
 });

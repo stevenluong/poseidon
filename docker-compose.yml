@@ -12,15 +12,12 @@ services:
             - nginx_default
     node:
         build: node/.
-        command: node server.js
+        command: node server.js && node logScan.js
         links:
             - ror
             - redis
         volumes:
-            #- ./node/server.js:/node/server.js
-            #- ./node/common.js:/node/common.js
-            #- ./node/logScan.js:/node/logScan.js
-            - ./node/:/node
+            - ./node:/node
             - /node/node_modules
             - /var/log/apache2:/node/apacheLogs
             - ../nginx/logs:/node/nginxLogs
