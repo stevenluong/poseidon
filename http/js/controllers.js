@@ -50,7 +50,7 @@ mainControllers.controller('mainCtrl', ['$scope','Visit',
             });
 
             //CPU
-            var socket = io("http://slapps.fr:8090");
+            var socket = io("http://poseidon_node.slapps.fr");
             $scope.cpuSeries = ['CPU'];
             $scope.cpuLabels = ["","","","","","","","","","","","","","",""];
             $scope.cpuData = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
