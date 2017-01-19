@@ -3,14 +3,17 @@
 /* Controllers */
 
 var mainControllers = angular.module('mainControllers', []);
+/*
 mainControllers.controller('logsCtrl', ['$scope','$http','Visit',
         function($scope,$http,Visit) {
             Visit.query(function(visits){
                 $scope.visits = visits;
             });
         }]);
-mainControllers.controller('mainCtrl', ['$scope','Visit',
-        function($scope,Visit) {
+        */
+mainControllers.controller('mainCtrl', ['$scope',
+        function($scope) {
+            /*
             //VISITS
             $scope.visitToday = 0;
             $scope.visitsSeries = ['Visits'];
@@ -48,7 +51,7 @@ mainControllers.controller('mainCtrl', ['$scope','Visit',
                 };
 
             });
-
+*/
             //CPU
             var socket = io("http://poseidon_node.slapps.fr");
             $scope.cpuSeries = ['CPU'];
