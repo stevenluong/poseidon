@@ -1,18 +1,8 @@
 version: '2'
 services:
-    #ror:
-    #    build: ror/.
-    #    command: bundle exec rails s -p 80 -b '0.0.0.0'
-    #    volumes:
-    #        - ./ror:/ror
-        #ports:
-        #    - "3001:3000"
-        #     restart: always
-        # networks:
-        #    - nginx_default
     node:
         build: node/.
-        command: node server.js && node logScan.js
+        command: node server.js #&& node logScan.js
         #links:
             #    - ror
             #   - redis

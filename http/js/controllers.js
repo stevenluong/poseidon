@@ -63,9 +63,9 @@ mainControllers.controller('mainCtrl', ['$scope',
                     yAxes: [
                     {
                         ticks: {
-                            max: 200,
+                            max: 2000,
                             min: 0,
-                            stepSize: 10
+                            stepSize: 100
                         }
                     }
                     ]
