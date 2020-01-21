@@ -63,9 +63,9 @@ mainControllers.controller('mainCtrl', ['$scope',
                     yAxes: [
                     {
                         ticks: {
-                            max: 2000,
+                            max: 200,
                             min: 0,
-                            stepSize: 100
+                            stepSize: 50
                         }
                     }
                     ]
@@ -74,13 +74,13 @@ mainControllers.controller('mainCtrl', ['$scope',
             socket.on("loadavg",function(data){
                 data.forEach(function(value){
                     $scope.cpuData[0].shift();
-                    $scope.cpuData[0].push(value*50);
+                    $scope.cpuData[0].push(value*100);
                     $scope.$apply();
                 });
             });
             socket.on("loadavgi",function(data){
                 $scope.cpuData[0].shift();
-                $scope.cpuData[0].push(data*50);
+                $scope.cpuData[0].push(data*100);
                 $scope.$apply();
             });
             //RAM
